@@ -1,0 +1,26 @@
+{
+  "name": "cyclemachine",
+  "version": "1.0.0",
+  "description": "CycleMachine is an NPM package for calculating and delivering information on a persons menstrual cycle  ### Thanks CycleMachine wouldn't have been possible without the great work of the Bloody Health team and the Drip app contributors. Some source code and algorithms are derived from their work (GPL v3 licensed). Please see https://gitlab.com/bloodyhealth/drip/-/blob/main/LICENSE",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/6767ltd/cyclemachine.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/6767ltd/cyclemachine/issues"
+  },
+  "homepage": "https://github.com/6767ltd/cyclemachine#readme",
+  "devDependencies": {
+    "typescript": "^4.9.4"
+  },
+  "dependencies": {
+    "sympto": "^3.0.1"
+  }
+}
