@@ -13,8 +13,17 @@ https://gitlab.com/bloodyhealth/drip (GPL-3.0)
 
 */
 
+import { Cycle } from "./cycle/cycleDay";
+import sympto from "sympto";
+
+interface CycleMachineProps {
+    // Cycles
+    cycles: Cycle[];
+}
+
 export default class CycleMachine {
-    constructor() {
-        console.log("CycleMachine");
+    private cycles: Cycle[];
+    constructor(props: CycleMachineProps) {
+        this.cycles = props.cycles;
     }
 }

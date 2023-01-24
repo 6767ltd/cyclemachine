@@ -4,8 +4,12 @@
     "module": "commonjs",
     "declaration": true,
     "outDir": "./out",
-    "strict": true
+    "strict": true,
+    "typeRoots": [
+      "./node_modules/@types",
+      "./lib_types"
+    ]
   },
   "include": ["src"],
-  "exclude": ["node_modules", "**/__tests__/*"]
+  "exclude": ["node_modules", "**/__tests__/*"],
 }
