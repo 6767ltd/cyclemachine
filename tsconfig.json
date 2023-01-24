@@ -7,7 +7,7 @@
     "strict": true,
     "typeRoots": [
       "./node_modules/@types",
-      "./lib_types"
+      "./src/@types"
     ]
   },
   "include": ["src"],

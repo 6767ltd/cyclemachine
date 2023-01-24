@@ -14,12 +14,14 @@ https://gitlab.com/bloodyhealth/drip (GPL-3.0)
 */
 
 import { Cycle } from "./cycle/cycleDay";
-import sympto from "sympto";
+import * as sympto from "sympto";
 
 interface CycleMachineProps {
     // Cycles
     cycles: Cycle[];
 }
+
+
 
 export default class CycleMachine {
     private cycles: Cycle[];
