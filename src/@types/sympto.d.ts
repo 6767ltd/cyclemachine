@@ -17,6 +17,8 @@ declare module 'sympto' {
 
     export interface SymptoCycleStatus {
         phases : { },
+        mucusShift?: { },
+        temperatureShift?: { },
     }
 
     export default function getSymptoThermalStatus(cycleInfo: {
