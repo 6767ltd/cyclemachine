@@ -28,4 +28,37 @@ export default class CycleMachine {
     constructor(props: CycleMachineProps) {
         this.cycles = props.cycles;
     }
+
+    public runSympto() {
+        // Convert cycles to sympto format
+        const symptoCycles: sympto.SymptoCycle[] = [];
+        const { cycles } = this;
+
+        cycles.forEach((cycleDays) => {
+            const symptoCycle: sympto.SymptoCycle = [];
+            cycleDays.forEach((cycleDay) => {
+                symptoCycle.push({
+                    date: cycleDay.dayStamp,
+                    temperature: cycleDay.temperature || 0,
+                    mucus: ({
+                        NONE: 0,
+                        CREAMY: 1,
+                        EGGWHITE: 2,
+                        SLIPPERY: 3,
+                    })[cycleDay.cervicalMucus || "NONE"],
+                    cervix: {
+                        opening: ({
+                            CLOSED: 0,
+                            MEDIUM: 1,
+                            OPEN: 2,
+                        })[cycleDay.cervixOpenLevel || "CLOSED"],
+                        firmness: ({
+                            SOFT: 0,
+                            HARD: 1,
+                        })[cycleDay.cervixHardness || "SOFT"],
+                    }
+                });
+            });
+        });
+    }
 }

@@ -8,10 +8,10 @@ declare module 'sympto' {
     export interface SymptoCycleDay {
         date: string; // Enforced, see format https://js-joda.github.io/js-joda/manual/LocalDate.html
         temperature: number; // Temperature after waking up
-        mucus: number;
+        mucus: number; // Between 0 and 4
         cervix: {
-            opening: number;
-            firmness: number;
+            opening: number; // between 0 and 2
+            firmness: number; // between 0 and 1
         };
     }
 
