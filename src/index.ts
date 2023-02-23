@@ -14,10 +14,10 @@ https://gitlab.com/bloodyhealth/drip (GPL-3.0)
 */
 
 import { Cycle } from "./cycle/cycleDay";
-import * as sympto from "sympto";
+import getSymptoThermalStatus, * as sympto from "sympto";
 
 interface CycleMachineProps {
-    // Cycles
+    // Cycles - IN ORDER FROM NEWEST TO OLDEST
     cycles: Cycle[];
 }
 
@@ -29,10 +29,14 @@ export default class CycleMachine {
         this.cycles = props.cycles;
     }
 
-    public runSympto() {
+    public runSympto(useCervixAsSecondarySymptom = false, excludePreOvu = false) {
         // Convert cycles to sympto format
         const symptoCycles: sympto.SymptoCycle[] = [];
         const { cycles } = this;
+
+        if (cycles.length < 2) {
+            throw new Error("At least two cycles are required to run sympto");
+        }
 
         cycles.forEach((cycleDays) => {
             const symptoCycle: sympto.SymptoCycle = [];
@@ -56,9 +60,30 @@ export default class CycleMachine {
                             SOFT: 0,
                             HARD: 1,
                         })[cycleDay.cervixHardness || "SOFT"],
-                    }
+                    },
+                    bleeding: ({
+                        NONE: 0,
+                        SPOTTING: 1,
+                        LIGHT: 2,
+                        MEDIUM: 3,
+                        HEAVY: 4,
+                    })[cycleDay.bleedingIntensity || "NONE"],
                 });
             });
         });
+
+        // Run sympto
+        const symptoStatus = getSymptoThermalStatus({
+            // The cycle to be analyzed is always the latest one (i.e. the first one in the array)
+            cycle: symptoCycles[0],
+            // The previous cycle is the second one in the array
+            previousCycle: symptoCycles[1],
+            // The earlier cycles are the rest of the array
+            earlierCycles: symptoCycles.slice(2),
+            secondarySymptom: useCervixAsSecondarySymptom ? "cervix" : "mucus",
+            excludePreOvu,
+        });
+
+        return symptoStatus;
     }
 }

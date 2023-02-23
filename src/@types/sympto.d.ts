@@ -13,6 +13,7 @@ declare module 'sympto' {
             opening: number; // between 0 and 2
             firmness: number; // between 0 and 1
         };
+        bleeding: number; // between 0 and 3
     }
 
     export interface SymptoCycleStatus {
