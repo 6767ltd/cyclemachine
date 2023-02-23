@@ -18,7 +18,8 @@
   },
   "homepage": "https://github.com/6767ltd/cyclemachine#readme",
   "devDependencies": {
-    "typescript": "^4.9.4"
+    "typescript": "^4.9.4",
+    "vitest": "^0.28.5"
   },
   "dependencies": {
     "sympto": "^3.0.1"
